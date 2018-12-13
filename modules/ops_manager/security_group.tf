@@ -25,7 +25,7 @@ resource "aws_security_group" "ops_manager_security_group" {
   }
 
   egress {
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["${var.private ? var.vpc_cidr : "0.0.0.0/0"}"]
     protocol    = "-1"
     from_port   = 0
     to_port     = 0

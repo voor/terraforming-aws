@@ -31,6 +31,8 @@ module "infra" {
   hosted_zone = "${var.hosted_zone}"
   dns_suffix  = "${var.dns_suffix}"
 
+  "ops_manager_private" = "${var.ops_manager_private}"
+
   tags = "${local.actual_tags}"
 
   cluster_name = "${var.cluster_name}"

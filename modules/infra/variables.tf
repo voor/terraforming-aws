@@ -62,3 +62,8 @@ locals {
   infrastructure_cidr = "${cidrsubnet(var.vpc_cidr, 10, 64)}"
   public_cidr         = "${cidrsubnet(var.vpc_cidr, 6, 0)}"
 }
+
+variable "ops_manager_private" {
+  default     = false
+  description = "If true, the Ops Manager will be colocated with the BOSH director on the infrastructure subnet instead of on the public subnet"
+}

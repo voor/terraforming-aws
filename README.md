@@ -64,7 +64,7 @@ Depending if you're deploying PAS or PKS you need to perform the following steps
   terraform plan -out=pcf.tfplan
   terraform apply plan
   ```
-1. Set the login and password for Opsman and configure the AWS BOSH Director:
+1. Set the login and password for Opsman and configure the AWS BOSH Director **(Note: If you are using a private ops manager skip this step and see below)**:
   ```
   PROJECT_DIR=$(dirname $PWD) ../scripts/configure-director ${PWD##*/} ${OM_PASSWORD}
   ```
@@ -108,6 +108,19 @@ tags = {
 ```
 
 #### Tips
+
+##### Private Ops Manager
+If you installed a Private Ops Manager you will not be able to access it over the internet.  Instead, create a `bastion` host (create a `t2.nano` instance on the public subnet) and run the following:
+
+```
+terraform output ops_manager_ssh_private_key > ops_manager_ssh_private_key.pem
+chmod 600 ops_manager_ssh_private_key.pem
+ssh -L 8443:${OPS_MANAGER_PRIVATE_IP}:443 -C -q -N ubuntu@${IP_ADDRESS_OF_BASTION} -i ops_manager_ssh_private_key.pem
+```
+
+Use the `om` cli with `OM_TARGET=https://localhost:8443`.
+
+**Note that once you do this you'll only be able to access Ops Manager through forwarded ports and using `om`, due to how the internal security module on Ops Manager is configured.**
 
 ##### Keep Secrets out of var files
 Alternatively, if you don't want to put sensitive variables into the file, you can pass them during the plan:
