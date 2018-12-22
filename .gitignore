@@ -9,3 +9,4 @@
 *.pivotal
 *stemcell*.tgz
 *.generated.yml
+OpsManager*onAWS.yml
