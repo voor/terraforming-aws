@@ -132,8 +132,9 @@ terraform plan -out=pcf.tfplan -var "secret_key=$AWS_SECRET_ACCESS_KEY" -var "ac
 
 If you have the `pivnet` cli installed:
 ```
-pivnet dlpf -p ops-manager -r $(pivnet releases -p ops-manager --format json | jq -r -c ".[0].version") -g '*AWS.yml'
-cat OpsManager*.yml | grep $AWS_DEFAULT_REGION
+pivnet login --api-token $PIVNET_API_TOKEN && \
+    pivnet dlpf -p ops-manager -r $(pivnet releases -p ops-manager --format json | jq -r -c ".[0].version") -g '*AWS.yml' && \
+    cat OpsManager*.yml | grep $AWS_DEFAULT_REGION
 ```
 
 ### Variables
