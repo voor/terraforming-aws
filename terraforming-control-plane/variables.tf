@@ -1,8 +1,6 @@
 variable "env_name" {}
 
 variable "dns_suffix" {}
-variable "access_key" {}
-variable "secret_key" {}
 variable "region" {}
 
 variable "availability_zones" {
