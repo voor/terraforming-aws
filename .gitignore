@@ -11,3 +11,4 @@
 *.generated.yml
 OpsManager*onAWS.yml
 om.key
+credentials.yml
