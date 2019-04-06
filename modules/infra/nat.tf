@@ -1,5 +1,4 @@
 resource "aws_route_table" "deployment" {
-  count  = "${length(var.availability_zones)}"
   vpc_id = "${aws_vpc.vpc.id}"
 }
 
