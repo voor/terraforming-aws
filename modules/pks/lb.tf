@@ -32,7 +32,7 @@ resource "aws_lb" "pks_api" {
   name                             = "${var.env_name}-pks-api"
   load_balancer_type               = "network"
   enable_cross_zone_load_balancing = true
-  internal                         = false
+  internal                         = "${var.internetless}"
   subnets                          = ["${var.public_subnet_ids}"]
 }
 

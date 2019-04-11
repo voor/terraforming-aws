@@ -26,6 +26,10 @@ variable "public_subnet_ids" {
   type = "list"
 }
 
+variable "internetless" {
+  default = false
+}
+
 variable "zone_id" {
   type = "string"
 }
@@ -34,19 +38,18 @@ variable "dns_suffix" {
   type = "string"
 }
 
-variable "use_route53" {
-}
+variable "use_route53" {}
 
 variable "tags" {
   type = "map"
 }
 
 module "cidr_lookup" {
-  source = "../calculate_subnets"
+  source   = "../calculate_subnets"
   vpc_cidr = "${var.vpc_cidr}"
 }
 
 locals {
-  pks_cidr = "${module.cidr_lookup.pks_cidr}"
+  pks_cidr          = "${module.cidr_lookup.pks_cidr}"
   pks_services_cidr = "${module.cidr_lookup.pks_services_cidr}"
 }
