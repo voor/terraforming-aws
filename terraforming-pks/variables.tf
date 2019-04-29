@@ -53,10 +53,6 @@ variable "ops_manager_private" {
   description = "If true, the Ops Manager will be colocated with the BOSH director on the infrastructure subnet instead of on the public subnet"
 }
 
-variable "optional_ops_manager" {
-  default = false
-}
-
 /*******************
 * SSL Certificates *
 ********************/
@@ -110,12 +106,4 @@ variable "tags" {
   type        = "map"
   default     = {}
   description = "Key/value tags to assign to all AWS resources"
-}
-
-/*******************************
- * Deprecated, Delete After Next Release *
- *******************************/
-
-variable "ops_manager_vm" {
-  default = true
 }

@@ -84,6 +84,7 @@ rds_instance_count = 1
 dns_suffix         = "example.com"
 vpc_cidr           = "10.0.0.0/16"
 use_route53        = true
+use_ssh_routes     = true
 use_tcp_routes     = true
 
 ssl_cert = <<EOF
@@ -140,11 +141,11 @@ See Terraform documentation on the [AWS Provider](https://www.terraform.io/docs/
 - tags: **(optional)** A map of AWS tags that are applied to the created resources. By default, the following tags are set: Application = Cloud Foundry, Environment = $env_name
 - vpc_cidr: **(default: 10.0.0.0/16)** Internal CIDR block for the AWS VPC.
 - use_route53: **(default: true)** Controls whether or not Route53 DNS resources are created.
+- use_ssh_routes: **(default: true)** Enable ssh routing
 - use_tcp_routes: **(default: true)** Controls whether or not tcp routing is enabled.
 
 ### Ops Manager (optional)
 - ops_manager_ami: **(optional)**  Ops Manager AMI, get the right AMI according to your region from the AWS guide downloaded from [Pivotal Network](https://network.pivotal.io/products/ops-manager) (if set to `""` no Ops Manager VM will be created)
-- optional_ops_manager: **(default: false)** Set to true if you want an additional Ops Manager (useful for testing upgrades)
 - optional_ops_manager_ami: **(optional)**  Additional Ops Manager AMI, get the right AMI according to your region from the AWS guide downloaded from [Pivotal Network](https://network.pivotal.io/products/ops-manager)
 - ops_manager_instance_type: **(default: m4.large)** Ops Manager instance type
 - ops_manager_private: **(default: false)** Set to true if you want Ops Manager deployed in a private subnet instead of a public subnet

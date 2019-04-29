@@ -17,7 +17,7 @@ variable "hosted_zone" {
 }
 
 variable "use_route53" {
-  default = true
+  default     = true
   description = "Indicate whether or not to enable route53"
 }
 
@@ -39,14 +39,6 @@ variable "ops_manager_instance_type" {
 variable "ops_manager_private" {
   default     = false
   description = "If true, the Ops Manager will be colocated with the BOSH director on the infrastructure subnet instead of on the public subnet"
-}
-
-variable "ops_manager_vm" {
-  default = true
-}
-
-variable "optional_ops_manager" {
-  default = false
 }
 
 /******
