@@ -13,12 +13,13 @@ main() {
 
     OM_USERNAME=$2
     OM_PASSWORD=$3
-    OM_HOST=$(terraform output -state=../terraforming-pks/terraform.tfstate ops_manager_dns)
+    OM_TARGET=$(terraform output -state=../terraforming-pks/terraform.tfstate ops_manager_dns)
 
-    BOSH_CMD=$(om -k curl --silent --path /api/v0/deployed/director/credentials/bosh_commandline_credentials | jq -c -r ".credential")
     terraform output -state=../terraforming-pks/terraform.tfstate  ops_manager_ssh_private_key > ops_manager_ssh_private_key.pem
     chmod 600 ops_manager_ssh_private_key.pem
-    MASTER_INSTANCE_ID=$(ssh -oStrictHostKeyChecking=accept-new -oUserKnownHostsFile=/dev/null ubuntu@${OM_HOST} -i ops_manager_ssh_private_key.pem $BOSH_CMD -d service-instance_${CLUSTER_UUID} vms --json | jq -r -c '.Tables[0].Rows[] | select(.instance | startswith("master")) | .vm_cid')
+    eval $(om bosh-env --ssh-private-key ops_manager_ssh_private_key.pem)
+    BOSH_DEPLOYMENT=service-instance_${CLUSTER_UUID}
+    MASTER_INSTANCE_ID=$(bosh vms --json | jq -r -c '.Tables[0].Rows[] | select(.instance | startswith("master")) | .vm_cid')
 
     echo "MASTER_INSTANCE_ID=$MASTER_INSTANCE_ID"
 
