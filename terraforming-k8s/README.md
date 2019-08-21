@@ -1,3 +1,5 @@
+# DEPRECATED SEE https://github.com/voor/kubernetes-lb
+
 # Creating a Load Balancer for a new Kubernetes Cluster created with PKS.
 
 Since there is no automated way to add a Load Balancer to the front of a PKS created cluster, this is an ease-of-use module to help.
