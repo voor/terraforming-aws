@@ -98,6 +98,10 @@ variable "rds_instance_count" {
   default = 0
 }
 
+variable "aws_profile" {
+  default = ""
+}
+
 /*******
 * Tags *
 ********/
@@ -107,7 +111,6 @@ variable "tags" {
   default     = {}
   description = "Key/value tags to assign to all AWS resources"
 }
-
 
 /*******************************
  * Deprecated, Delete After Next Release *
