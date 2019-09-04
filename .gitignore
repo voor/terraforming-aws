@@ -12,6 +12,7 @@
 OpsManager*onAWS.yml
 om.key
 credentials.yml
+credentials.tf
 *control-plane-*.yml
 *.tgz
 *secrets.yml
