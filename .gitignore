@@ -18,3 +18,4 @@ credentials.tf
 *secrets.yml
 *.key
 *.srl
+*.csr
