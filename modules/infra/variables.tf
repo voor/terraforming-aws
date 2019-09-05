@@ -15,8 +15,7 @@ variable "dns_suffix" {
   type = "string"
 }
 
-variable "use_route53" {
-}
+variable "use_route53" {}
 
 variable "availability_zones" {
   type = "list"
@@ -33,7 +32,9 @@ variable "tags" {
   description = "Key/value tags to assign to all AWS resources"
 }
 
-variable "internetless" {}
+variable "internetless" {
+  default = false
+}
 
 variable "nat_ami_map" {
   type = "map"
@@ -59,7 +60,7 @@ variable "nat_ami_map" {
 }
 
 module "cidr_lookup" {
-  source = "../calculate_subnets"
+  source   = "../calculate_subnets"
   vpc_cidr = "${var.vpc_cidr}"
 }
 

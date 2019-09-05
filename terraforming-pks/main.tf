@@ -4,7 +4,7 @@ provider "aws" {
   region     = "${var.region}"
   profile    = "${var.aws_profile}"
 
-  version = "~> 1.60"
+  version = "~> 2.16"
 }
 
 terraform {
@@ -105,9 +105,10 @@ module "pks" {
   private_route_table_ids = "${module.infra.deployment_route_table_ids}"
   public_subnet_ids       = "${module.infra.public_subnet_ids}"
 
-  zone_id     = "${module.infra.zone_id}"
-  dns_suffix  = "${var.dns_suffix}"
-  use_route53 = "${var.use_route53}"
+  zone_id      = "${module.infra.zone_id}"
+  dns_suffix   = "${var.dns_suffix}"
+  use_route53  = "${var.use_route53}"
+  internetless = "${var.internetless}"
 
   tags = "${local.actual_tags}"
 }

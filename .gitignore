@@ -16,3 +16,5 @@ credentials.tf
 *control-plane-*.yml
 *.tgz
 *secrets.yml
+*.key
+*.srl
